@@ -23,11 +23,11 @@ async function send(content, options = undefined) {
   return groq.chat.completions.create({
     messages: [
       {
-        role: options.role ?? "user",
+        role: options?.role ?? "user",
         content: content,
       },
     ],
-    model: options.model ?? process.env.DEFAULT_MODEL
+    model: options?.model ?? process.env.DEFAULT_MODEL
   });
 }
 

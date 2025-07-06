@@ -1,13 +1,14 @@
-const { main, getGroqChatCompletion } = require('../groq-client');
+const { main, getGroqChatCompletion, send } = require('../groq-client');
 
 var express = require('express');
 var router = express.Router();
 
-router.get('/', async function(req, res, next) {
-  res.send(await main());
+router.get('/:content', async function (req, res, next) {
+  const content = req.params.content;
+  res.send(await send(content));
 });
 
-router.get('/groqChatCompletion', async function(req, res, next) {
+router.get('/groqChatCompletion', async function (req, res, next) {
   res.send(await getGroqChatCompletion());
 });
 
