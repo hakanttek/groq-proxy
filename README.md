@@ -17,8 +17,8 @@ This is a simple proxy server built with Express.js to securely forward requests
 ## 🔧 Setup
 
 ```bash
-git clone https://github.com/hakanttek/groq-proxy.git
-cd groq-proxy
+git clone https://github.com/hakanttek/lead-genie.git
+cd lead-genie
 npm install
 ```
 

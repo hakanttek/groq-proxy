@@ -7,6 +7,10 @@ var groqRouter = require('./routes/groq');
 
 var app = express();
 
+const { swaggerUi, specs } = require('./swagger');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

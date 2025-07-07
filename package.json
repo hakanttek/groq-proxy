@@ -1,5 +1,5 @@
 {
-  "name": "groq-proxy",
+  "name": "lead-genie",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,9 @@
     "dotenv": "^17.0.1",
     "express": "~4.16.1",
     "groq-sdk": "^0.26.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
