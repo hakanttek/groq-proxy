@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var groqRouter = require('./routes/groq');
+var searchRouter = require('./routes/search');
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/groq', groqRouter);
+app.use('/api/search', searchRouter);
 
 // 404 Not Found Middleware
 app.use(function (req, res, next) {
