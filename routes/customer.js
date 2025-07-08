@@ -17,33 +17,28 @@ const express_1 = __importDefault(require("express"));
 var router = express_1.default.Router();
 /**
  * @swagger
- * /api/search/{query}:
+ * /api/customer/{customer}:
  *   get:
- *     summary: Perform a search query using SerpAPI
- *     description: Performs a web search using SerpAPI based on the query parameter. The search engine can be customized via a query parameter.
+ *     summary: Perform a search customer using SerpAPI
+ *     description: Performs a web search using SerpAPI based on the customer parameter. The search engine can be customized via a customer parameter.
  *     parameters:
  *       - in: path
- *         name: query
+ *         name: customer
  *         required: true
  *         schema:
  *           type: string
- *         description: The search term to query (e.g., "Node.js tutorials")
- *       - in: query
- *         name: engine
- *         schema:
- *           type: string
- *         description: The search engine to use (e.g., google, bing, yahoo)
+ *         description: The search term to customer (e.g., "Leather handbags")
  *     responses:
  *       200:
  *         description: Successful response with search results
  *       500:
  *         description: Internal server error
  */
-router.get('/:query', function (req, res, next) {
+router.get('/:customer', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const query = req.params.query;
-            res.send(yield (0, search_service_1.default)(query, req.query));
+            const customer = req.params.customer;
+            res.send(yield (0, search_service_1.default)(customer).then(res => res.related_brands));
         }
         catch (error) {
             next(error);
