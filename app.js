@@ -3,7 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var groqRouter = require('./routes/groq');
+var groqRouter = require('./routes/groq').default;
 var searchRouter = require('./routes/search');
 
 var app = express();

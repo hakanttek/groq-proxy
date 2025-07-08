@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = send;
 const Groq = require("groq-sdk");
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const DEFAULT_OPTIONS = {
@@ -39,4 +41,3 @@ function send(content_1) {
         });
     });
 }
-module.exports = { send };

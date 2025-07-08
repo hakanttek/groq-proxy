@@ -22,7 +22,7 @@ const DEFAULT_OPTIONS: Options = {
   stop: process.env.DEFAULT_STOP ?? undefined,
 }
 
-async function send(content: string, options: Options | undefined = undefined): Promise<any> {
+export default async function send(content: string, options: Options | undefined = undefined): Promise<any> {
   return groq.chat.completions.create({
     messages: [
       {
@@ -38,5 +38,3 @@ async function send(content: string, options: Options | undefined = undefined): 
     stop: options?.stop ?? DEFAULT_OPTIONS.stop
   });
 }
-
-module.exports = { send };
