@@ -1,4 +1,4 @@
-const { send } = require('../groq-client');
+const { send } = require('../services/groq-client');
 
 var express = require('express');
 var router = express.Router();
