@@ -11,7 +11,7 @@ var app = express();
 
 const allowedOrigins = [
   'http://localhost:' + process.env.PORT || 3000,
-  process.env.ALLOWED_ORIGIN || 'https://lead-genie.onrender.com',
+  process.env.ORIGIN || 'https://lead-genie.onrender.com',
 ];
 
 const cors = require('cors');
