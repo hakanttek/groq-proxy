@@ -9,6 +9,23 @@ var customerRouter = require('./routes/customer').default;
 
 var app = express();
 
+const allowedOrigins = [
+  'http://localhost:' + process.env.PORT || 3000,
+  process.env.ALLOWED_ORIGIN || 'https://lead-genie.onrender.com',
+];
+
+const cors = require('cors');
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 const { swaggerUi, specs } = require('./swagger');
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
