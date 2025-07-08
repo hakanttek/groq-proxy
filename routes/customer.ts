@@ -25,7 +25,12 @@ var router = express.Router();
 router.get('/:customer', async function (req, res, next) {
   try {
     const customer = req.params.customer;
-    res.send(await search(customer).then(res => res.related_brands));
+    const searchResults = await search(customer).then(res => res.related_brands);
+    if (searchResults.length === 0) {
+      res.status(404).send({ message: 'No related brands found.' });
+    }
+    else
+      res.send(searchResults);
   }
   catch (error) {
     next(error);

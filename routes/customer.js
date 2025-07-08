@@ -38,7 +38,12 @@ router.get('/:customer', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const customer = req.params.customer;
-            res.send(yield (0, search_service_1.default)(customer).then(res => res.related_brands));
+            const searchResults = yield (0, search_service_1.default)(customer).then(res => res.related_brands);
+            if (searchResults.length === 0) {
+                res.status(404).send({ message: 'No related brands found.' });
+            }
+            else
+                res.send(searchResults);
         }
         catch (error) {
             next(error);
