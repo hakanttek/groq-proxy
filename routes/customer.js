@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const search_service_1 = __importDefault(require("../services/search-service"));
 const express_1 = __importDefault(require("express"));
+const groq_client_1 = __importDefault(require("../services/groq-client"));
 var router = express_1.default.Router();
 /**
  * @swagger
@@ -36,14 +37,20 @@ var router = express_1.default.Router();
  */
 router.get('/:customer', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
+        var _a;
         try {
             const customer = req.params.customer;
             const searchResults = yield (0, search_service_1.default)(customer).then(res => res.related_brands);
             if (searchResults.length === 0) {
                 res.status(404).send({ message: 'No related brands found.' });
             }
-            else
-                res.send(searchResults);
+            else {
+                const searchStr = JSON.stringify(searchResults);
+                var content = (_a = process.env.PROMT) !== null && _a !== void 0 ? _a : "Below is a list of potential clients. For each person, generate a personalized outreach message (email or LinkedIn intro) based on their industry, location, and company info.";
+                content += `\n\nCustomers as JSON:\n${searchStr}`;
+                var ai_res = yield (0, groq_client_1.default)(content);
+                res.send(ai_res.choices[0].message.content);
+            }
         }
         catch (error) {
             next(error);
